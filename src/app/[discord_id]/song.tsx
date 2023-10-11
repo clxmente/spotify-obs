@@ -15,7 +15,7 @@ interface SongProps {
 type DiscordIdType = `${bigint}`;
 
 const Song = ({ discord_id }: SongProps) => {
-  const data = useLanyardWS(discord_id as DiscordIdType);
+  const data = useThrottle(useLanyardWS(discord_id as DiscordIdType));
 
   const [, rerender] = useState({});
 

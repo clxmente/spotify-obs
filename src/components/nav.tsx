@@ -35,7 +35,11 @@ const Nav = () => {
         </div>
 
         <Button size="icon" variant="glass" asChild className="hidden md:flex">
-          <a href="https://github.com/clxmente/spotify-obs">
+          <a
+            href="https://github.com/clxmente/spotify-obs"
+            target="_blank"
+            rel="noreferrer"
+          >
             <GithubIcon />
           </a>
         </Button>

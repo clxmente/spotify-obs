@@ -7,10 +7,10 @@ import HeroSection from "@/app/hero-section";
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-[#010313]">
       <Nav />
       <main className="relative flex flex-col items-center overflow-x-clip">
-        <div className="absolute -top-24 -z-10 flex h-[10rem] w-[40rem] items-center justify-center rounded-[50%] bg-[#6F32F0] blur-[100px]" />
+        <div className="absolute -top-24 flex h-[10rem] w-[40rem] items-center justify-center rounded-[50%] bg-[#6F32F0] blur-[100px]" />
         <HeroSection />
         <section className="min-h-[calc(100vh-65px)] px-5 py-8 md:px-0">
           <div className="mx-auto flex max-w-6xl flex-col gap-12 text-left">
@@ -111,6 +111,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 }
