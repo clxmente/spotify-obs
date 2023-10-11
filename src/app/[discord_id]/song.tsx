@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+// @ts-ignore
 import { useLanyardWS } from "use-lanyard";
 import { useEffect, useState } from "react";
 import { useThrottle } from "@/lib/throttle";
