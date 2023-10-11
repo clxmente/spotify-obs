@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackGoal } from "fathom-client";
 import { useRouter } from "next/navigation";
 
 import Song from "@/app/song";
