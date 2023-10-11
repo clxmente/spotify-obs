@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 
 import type { Metadata } from "next";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#010313] text-white`}>
+      <body className={`${inter.className} bg-transparent text-white`}>
         {children}
       </body>
     </html>

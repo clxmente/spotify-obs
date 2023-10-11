@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import Song from "@/app/song";
 
@@ -21,6 +22,8 @@ const example_song = {
 };
 
 const HeroSection = () => {
+  const router = useRouter();
+
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
 
@@ -28,7 +31,8 @@ const HeroSection = () => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(discordID);
+
+    return router.push(`/${discordID}`);
   };
 
   return (
