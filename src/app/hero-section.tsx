@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 
-import { Song } from "@/app/song";
-import { DiscordLogo } from "@/app/discord-logo";
+import Song from "@/app/song";
+
+import { Button } from "@/components/ui/button";
+import { DiscordLogo } from "@/components/discord-logo";
 
 const example_song = {
   track_id: "5lDlLjV79Wgl2d9LjpMgXd",
@@ -18,13 +20,20 @@ const example_song = {
   song: "letter@1.0.0",
 };
 
-export const HeroSection = () => {
+const HeroSection = () => {
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
 
+  const [discordID, setDiscordID] = useState("0");
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(discordID);
+  };
+
   return (
     <section
-      className="mx-auto flex min-h-screen flex-col items-center justify-center px-5 py-8 md:py-0"
+      className="flex min-h-[calc(100vh-65px)] w-full flex-col items-center justify-center px-5 py-8 md:py-0"
       onMouseMove={(e) => {
         const middleX = e.currentTarget.offsetWidth / 2;
         const middleY = e.currentTarget.offsetHeight / 2;
@@ -34,15 +43,16 @@ export const HeroSection = () => {
         const relativeY =
           e.clientY - e.currentTarget.offsetTop + window.scrollY;
 
-        setMouseX(((relativeX - middleX) / middleX) * 25);
-        setMouseY(((relativeY - middleY) / middleY) * 25);
+        setMouseX(((relativeX - middleX) / middleX) * 15);
+        setMouseY(((relativeY - middleY) / middleY) * 15);
       }}
       // onMouseLeave={() => {
       //   setMouseX(0);
       //   setMouseY(0);
       // }}
     >
-      <div className="flex max-w-6xl flex-col items-center gap-8 md:flex-row">
+      <div className="relative flex max-w-6xl flex-col items-center justify-center gap-10 md:flex-row">
+        <div className="absolute -z-10 flex h-[10rem] w-full rounded-[50%] bg-[#6F32F0]/60 blur-[150px]" />
         <div className="space-y-6 text-center md:text-left">
           <h1 className="text-4xl font-bold md:text-6xl">
             Display your Spotify songs in OBS
@@ -53,17 +63,42 @@ export const HeroSection = () => {
               target="_blank"
               rel="noreferrer"
               href="https://github.com/phineas/lanyard"
-              className="text-red-700 hover:underline"
+              className="text-[#5865F2] hover:underline"
             >
               Lanyard
             </a>{" "}
             API which monitors your Discord presence. Get started by joining the
-            Lanyard Discord server.
+            Lanyard Discord server. Test it out below!
           </h1>
-          <button className="flex items-center rounded-md bg-[#5865F2] px-3 py-2 font-medium text-white hover:bg-[#5865F2]/80">
-            <DiscordLogo className="mr-2 h-5 w-5" />
-            Join Lanyard
-          </button>
+          <div className="space-y-5 md:flex md:items-center md:space-x-5 md:space-y-0">
+            <Button className="flex bg-[#5865F2] hover:bg-[#5865F2]/80" asChild>
+              <a
+                href="https://discord.gg/UrXF2cfJ7F"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <DiscordLogo className="mr-2 h-5 w-5" />
+                Lanyard
+              </a>
+            </Button>
+            <form
+              className="relative flex items-center justify-center"
+              onSubmit={handleFormSubmit}
+            >
+              <input
+                type="text"
+                className="w-full appearance-none rounded-md border border-white/20 bg-transparent px-3 py-2 text-white placeholder-white/30 outline-none transition-all hover:border-white/30 focus:border-white/50 md:pr-20"
+                placeholder="Enter your Discord ID"
+                onChange={(e) => setDiscordID(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="absolute right-0 select-none pr-4 text-xs font-medium uppercase text-white/30 transition-colors hover:text-white/40"
+              >
+                submit
+              </button>
+            </form>
+          </div>
         </div>
         <Song
           data={example_song}
@@ -75,3 +110,5 @@ export const HeroSection = () => {
     </section>
   );
 };
+
+export default HeroSection;

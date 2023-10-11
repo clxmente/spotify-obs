@@ -2,6 +2,8 @@
 
 import type { Spotify } from "use-lanyard";
 
+import Image from "next/image";
+
 interface SongProps {
   data: Spotify;
   progress: number;
@@ -9,7 +11,7 @@ interface SongProps {
   mouseY: number;
 }
 
-export const Song = ({ data, progress, mouseX, mouseY }: SongProps) => {
+const Song = ({ data, progress, mouseX, mouseY }: SongProps) => {
   return (
     <div
       style={{
@@ -17,13 +19,15 @@ export const Song = ({ data, progress, mouseX, mouseY }: SongProps) => {
           -1 * mouseY
         }deg)`,
       }}
-      className="hidden w-[600px] space-x-4 rounded-[18px] border-2 border-neutral-800 bg-black/60 p-3 md:flex"
+      className="hidden w-[600px] space-x-4 rounded-[18px] border-2 border-white/10 bg-black/20 p-3 lg:flex"
     >
       <div className="flex-shrink-0">
-        <img
+        <Image
           src={data.album_art_url!}
           alt={data.song}
-          className="aspect-square h-24 rounded-md"
+          width={96}
+          height={96}
+          className="aspect-square rounded-md"
         />
       </div>
 
@@ -77,3 +81,5 @@ export const Song = ({ data, progress, mouseX, mouseY }: SongProps) => {
 //     </div>
 //   );
 // };
+
+export default Song;
