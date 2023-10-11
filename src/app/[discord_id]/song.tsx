@@ -1,7 +1,5 @@
 "use client";
 
-import type { Spotify } from "use-lanyard";
-
 import Image from "next/image";
 
 import { useLanyardWS } from "use-lanyard";

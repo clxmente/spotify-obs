@@ -1,11 +1,9 @@
 "use client";
 
-import type { Spotify } from "use-lanyard";
-
 import Image from "next/image";
 
 interface SongProps {
-  data: Spotify;
+  data: any; // import type { Spotify } from "use-lanyard" (currently broken)
   progress: number;
   mouseX: number;
   mouseY: number;
