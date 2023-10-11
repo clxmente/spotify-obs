@@ -33,6 +33,8 @@ const HeroSection = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    trackGoal("7EILHFG4", 0);
+
     return router.push(`/${discordID}`);
   };
 
