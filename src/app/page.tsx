@@ -75,29 +75,27 @@ export default function Home() {
 
               <p className="text-sm text-neutral-400">
                 Replace the{" "}
-                <span className="font-semibold text-green-400">Xs</span> in the
+                <span className="font-semibold text-green-400">@s</span> in the
                 URL with your{" "}
                 <span className="font-semibold text-white">Discord ID</span>
               </p>
               {/* Source Options */}
-              <div className="flex items-center">
-                <span className="w-14 text-right">URL</span>
-                <div className="ml-4 w-full rounded-md bg-gray-800 p-2">
+              <div className="flex w-full items-center">
+                <span className="w-14 text-right text-sm">URL</span>
+                <div className="ml-3 w-full rounded-md bg-gray-800 p-2">
                   https://spotify-obs.com/
-                  <span className="font-semibold text-green-400">
-                    XXXXXXXXXXX
-                  </span>
+                  <span className="font-semibold text-green-400">@@@</span>
                 </div>
               </div>
-              <div className="flex items-center">
-                <span className="w-14 text-right">Width</span>
-                <div className="ml-4 w-full rounded-md bg-gray-800 p-2">
+              <div className="flex w-full items-center">
+                <span className="w-14 text-right text-sm">Width</span>
+                <div className="ml-3 w-full rounded-md bg-gray-800 p-2">
                   800
                 </div>
               </div>
-              <div className="flex items-center">
-                <span className="w-14 text-right">Height</span>
-                <div className="ml-4 w-full rounded-md bg-gray-800 p-2">
+              <div className="flex w-full items-center">
+                <span className="w-14 text-right text-sm">Height</span>
+                <div className="ml-3 w-full rounded-md bg-gray-800 p-2">
                   200
                 </div>
               </div>
