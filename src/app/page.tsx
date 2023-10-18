@@ -54,7 +54,7 @@ export default function Home() {
                 OBS Setup
               </h2>
               <p className="text-neutral-400">
-                Now all you have to do is add a broswer source to your OBS
+                Now all you have to do is add a browser source to your OBS
                 scene.
               </p>
               <p className="text-neutral-400">
