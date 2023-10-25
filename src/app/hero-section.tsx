@@ -107,12 +107,7 @@ const HeroSection = () => {
             </form>
           </div>
         </div>
-        <Song
-          data={example_song}
-          progress={50}
-          mouseX={mouseX}
-          mouseY={mouseY}
-        />
+        <Song data={example_song} mouseX={mouseX} mouseY={mouseY} />
       </div>
     </section>
   );

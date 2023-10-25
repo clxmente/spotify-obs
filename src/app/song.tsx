@@ -3,14 +3,29 @@ import type { Spotify } from "use-lanyard";
 
 import Image from "next/image";
 
+import { useEffect, useState } from "react";
+
 interface SongProps {
   data: Spotify;
-  progress: number;
   mouseX: number;
   mouseY: number;
 }
 
-const Song = ({ data, progress, mouseX, mouseY }: SongProps) => {
+const Song = ({ data, mouseX, mouseY }: SongProps) => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) return 0;
+
+        return prev + 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       style={{
