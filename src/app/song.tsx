@@ -1,9 +1,10 @@
 "use client";
+import type { Spotify } from "use-lanyard";
 
 import Image from "next/image";
 
 interface SongProps {
-  data: any; // import type { Spotify } from "use-lanyard" (currently broken)
+  data: Spotify;
   progress: number;
   mouseX: number;
   mouseY: number;
@@ -35,7 +36,7 @@ const Song = ({ data, progress, mouseX, mouseY }: SongProps) => {
           <p className="truncate text-xl">{data.artist}</p>
         </div>
         <div className="pr-6">
-          <div className="h-3 w-full rounded-full bg-white/50">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-white/50">
             <div
               className="h-3 rounded-full bg-white/50 transition-all duration-1000 ease-linear will-change-[width]"
               style={{ width: `${progress}%` }}

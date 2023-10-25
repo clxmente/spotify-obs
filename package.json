@@ -20,7 +20,7 @@
     "react-dom": "^18",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "use-lanyard": "^1.4.4"
+    "use-lanyard": "^1.5.1"
   },
   "devDependencies": {
     "@types/node": "^20",
