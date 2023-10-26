@@ -1,3 +1,5 @@
+"use client";
+
 import type { Snowflake } from "use-lanyard";
 
 import Song from "@/app/[discord_id]/song";

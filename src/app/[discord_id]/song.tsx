@@ -92,6 +92,14 @@ const Song = ({ discord_id }: SongProps) => {
     return <></>;
   }
 
+  if (opts.get("type") === "text") {
+    return (
+      <h1 className="text-center text-4xl font-bold">
+        {data.spotify.song} - {data.spotify.artist.replaceAll(";", ", ")}
+      </h1>
+    );
+  }
+
   const opacity = opts.get("opacity") || 60;
   const backgroundColor = `rgba(${backgroundRGB} / ${opacity}%)`;
 
@@ -105,8 +113,8 @@ const Song = ({ discord_id }: SongProps) => {
       <div className="flex-shrink-0">
         {data.spotify.album_art_url && (
           <NextImage
-            src={data?.spotify?.album_art_url}
-            alt={data?.spotify?.song}
+            src={data.spotify.album_art_url}
+            alt={data.spotify.song}
             height={172}
             width={172}
             className="aspect-square rounded-xl"
@@ -117,10 +125,10 @@ const Song = ({ discord_id }: SongProps) => {
       <div className="flex w-full flex-col justify-center space-y-4 overflow-hidden">
         <div>
           <p className="truncate text-5xl font-bold leading-normal text-white">
-            {data?.spotify?.song}
+            {data.spotify.song}
           </p>
           <p className="truncate text-3xl text-white">
-            {data?.spotify?.artist.replaceAll(";", ", ")}
+            {data.spotify.artist.replaceAll(";", ", ")}
           </p>
         </div>
         <ProgressBar start={start} end={end} />
