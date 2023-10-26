@@ -9,10 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
 
 import {
+  CogIcon,
   MenuIcon,
-  HomeIcon,
-  ChevronRightSquareIcon,
   VideoIcon,
+  LayoutGridIcon,
+  ChevronRightSquareIcon,
 } from "lucide-react";
 
 const MobileNav = () => {
@@ -52,7 +53,7 @@ const MobileNav = () => {
               onClick={() => setOpen(false)}
             >
               <Link href="/">
-                <HomeIcon className="mr-2 h-5 w-5" />
+                <LayoutGridIcon className="mr-2 h-5 w-5" />
                 Home
               </Link>
             </Button>
@@ -78,6 +79,18 @@ const MobileNav = () => {
               <Link href="#obs-setup">
                 <VideoIcon className="mr-2 h-5 w-5" />
                 OBS Setup
+              </Link>
+            </Button>
+
+            <Button
+              variant="glass"
+              className="h-14 w-full justify-start"
+              asChild
+              onClick={() => setOpen(false)}
+            >
+              <Link href="#customize">
+                <CogIcon className="mr-2 h-5 w-5" />
+                Customize
               </Link>
             </Button>
           </div>

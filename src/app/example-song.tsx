@@ -11,7 +11,7 @@ interface SongProps {
   mouseY: number;
 }
 
-const Song = ({ data, mouseX, mouseY }: SongProps) => {
+const ExampleSong = ({ data, mouseX, mouseY }: SongProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -63,4 +63,4 @@ const Song = ({ data, mouseX, mouseY }: SongProps) => {
   );
 };
 
-export default Song;
+export default ExampleSong;

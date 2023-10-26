@@ -7,7 +7,7 @@ import HeroSection from "@/app/hero-section";
 
 export default function Home() {
   return (
-    <div className="bg-[#010313]">
+    <div className="bg-purple-dark">
       <Nav />
       <main className="relative flex flex-col items-center overflow-x-clip">
         <div className="absolute -top-24 flex h-[10rem] w-[40rem] items-center justify-center rounded-[50%] bg-[#6F32F0] blur-[100px]" />
@@ -15,8 +15,11 @@ export default function Home() {
         <section className="min-h-[calc(100vh-65px)] px-5 py-8">
           <div className="mx-auto flex max-w-6xl flex-col gap-12 text-left">
             {/* getting-started */}
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold" id="getting-started">
+            <section className="space-y-4">
+              <h2
+                className="scroll-mt-[81px] text-3xl font-bold"
+                id="getting-started"
+              >
                 Getting Started
               </h2>
               <p className="text-neutral-400">
@@ -47,10 +50,13 @@ export default function Home() {
                 click &quot;Copy User ID&quot;. Alternatively, you can right
                 click your name in chat and find the option there.
               </p>
-            </div>
+            </section>
             {/* obs-setup */}
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold" id="obs-setup">
+            <section className="space-y-4">
+              <h2
+                className="scroll-mt-[81px] text-3xl font-bold"
+                id="obs-setup"
+              >
                 OBS Setup
               </h2>
               <p className="text-neutral-400">
@@ -105,7 +111,7 @@ export default function Home() {
                 of what it should look like:
               </p>
               <Image src={example} alt="Example" className="rounded-xl" />
-            </div>
+            </section>
           </div>
         </section>
       </main>

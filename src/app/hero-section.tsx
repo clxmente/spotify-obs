@@ -4,7 +4,7 @@ import { useState } from "react";
 import { trackGoal } from "fathom-client";
 import { useRouter } from "next/navigation";
 
-import Song from "@/app/song";
+import { default as ExampleSong } from "@/app/example-song";
 
 import { Button } from "@/components/ui/button";
 import { DiscordLogo } from "@/components/discord-logo";
@@ -107,7 +107,7 @@ const HeroSection = () => {
             </form>
           </div>
         </div>
-        <Song data={example_song} mouseX={mouseX} mouseY={mouseY} />
+        <ExampleSong data={example_song} mouseX={mouseX} mouseY={mouseY} />
       </div>
     </section>
   );
