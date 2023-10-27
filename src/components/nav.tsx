@@ -73,7 +73,7 @@ const Nav = () => {
             </Button>
           </div>
 
-          <MobileNav />
+          <MobileNav setCustomOpen={setOpen} />
         </div>
       </nav>
       <Customize open={open} setOpen={setOpen} />

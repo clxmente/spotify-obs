@@ -151,53 +151,54 @@ export default function Customize({ open, setOpen }: CustomizeProps) {
             />
 
             {/* Toggles */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center justify-center space-x-2">
-                <Switch
-                  id="text-only"
-                  checked={textOnly}
-                  onCheckedChange={() => setTextOnly((p) => !p)}
-                />
+            <div className="grid grid-cols-1 items-baseline gap-2 space-y-4 pt-4 md:grid-cols-2 md:space-y-0">
+              <div className="flex justify-between md:pr-8">
+                <div className="flex flex-col space-y-2">
+                  <label
+                    htmlFor="text-only"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Text Only
+                  </label>
+                  <Switch
+                    id="text-only"
+                    checked={textOnly}
+                    onCheckedChange={() => setTextOnly((p) => !p)}
+                  />
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <label
+                    htmlFor="enable-color"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Adaptive Color
+                  </label>
+                  <Switch
+                    id="enable-color"
+                    checked={enableColor}
+                    onCheckedChange={() => setEnableColor((p) => !p)}
+                  />
+                </div>
+              </div>
+              {/* Slider */}
+              <div className="w-full space-y-2">
                 <label
-                  htmlFor="text-only"
+                  htmlFor="opacity"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  Text Only
+                  Opacity{" "}
+                  <span className="text-xs text-neutral-500">({opacity}%)</span>
                 </label>
-              </div>
-
-              <div className="flex items-center justify-center space-x-2">
-                <Switch
-                  id="enable-color"
-                  checked={enableColor}
-                  onCheckedChange={() => setEnableColor((p) => !p)}
+                <Slider
+                  id="opacity"
+                  min={0}
+                  max={100}
+                  defaultValue={[60]}
+                  value={opacity}
+                  onValueChange={(value) => setOpacity(value)}
                 />
-                <label
-                  htmlFor="enable-color"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Adaptive Color
-                </label>
               </div>
-            </div>
-
-            {/* Slider */}
-            <div className="space-y-2">
-              <label
-                htmlFor="opacity"
-                className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Opacity{" "}
-                <span className="text-sm text-neutral-500">({opacity}%)</span>
-              </label>
-              <Slider
-                id="opacity"
-                min={0}
-                max={100}
-                defaultValue={[60]}
-                value={opacity}
-                onValueChange={(value) => setOpacity(value)}
-              />
             </div>
           </div>
         </div>

@@ -59,7 +59,7 @@ const HeroSection = () => {
       // }}
     >
       <div className="relative flex max-w-6xl flex-col items-center justify-center gap-10 md:flex-row">
-        <div className="absolute flex h-[10rem] w-full rounded-[50%] bg-[#6F32F0]/60 blur-[150px]" />
+        <div className="pointer-events-none absolute flex h-[10rem] w-full select-none rounded-[50%] bg-[#6F32F0]/60 blur-[150px]" />
         <div className="space-y-6 text-center md:text-left">
           <h1 className="text-4xl font-bold md:text-6xl">
             Display your Spotify songs in OBS

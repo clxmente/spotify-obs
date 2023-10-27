@@ -16,7 +16,11 @@ import {
   ChevronRightSquareIcon,
 } from "lucide-react";
 
-const MobileNav = () => {
+type MobileNavProps = {
+  setCustomOpen: (open: boolean) => void;
+};
+
+const MobileNav = ({ setCustomOpen }: MobileNavProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -86,7 +90,10 @@ const MobileNav = () => {
               variant="glass"
               className="h-14 w-full justify-start"
               asChild
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setCustomOpen(true);
+                setOpen(false);
+              }}
             >
               <Link href="#customize">
                 <CogIcon className="mr-2 h-5 w-5" />
