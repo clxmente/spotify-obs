@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { toast, useToast } from "@/components/ui/use-toast";
 
 import { CopyIcon } from "lucide-react";
 
@@ -57,7 +58,13 @@ function InlineInput({ label, value, setValue, readOnly }: InlineInputProps) {
             size="icon"
             variant="ghost"
             className="group absolute right-0 hover:bg-inherit dark:hover:bg-inherit"
-            onClick={() => navigator.clipboard.writeText(value)}
+            onClick={() => {
+              toast({
+                title: "Copied to clipboard!",
+                description: "You can now paste it into OBS.",
+              });
+              navigator.clipboard.writeText(value);
+            }}
           >
             <CopyIcon className="h-4 w-4 group-hover:text-neutral-400" />
           </Button>
@@ -75,6 +82,8 @@ export default function Customize({ open, setOpen }: CustomizeProps) {
   const [enableColor, setEnableColor] = useState(false);
   const [textOnly, setTextOnly] = useState(false);
   const [opacity, setOpacity] = useState([60]);
+
+  const { toast } = useToast();
 
   useEffect(() => {
     setObsUrl(`https://spotify-obs.com/${discordId}?`);
@@ -132,6 +141,20 @@ export default function Customize({ open, setOpen }: CustomizeProps) {
           <DialogDescription>
             Change the look of the currently playing song. Copy the URL and
             paste it into your OBS browser source configuration.
+            <ul className="mt-2 list-inside list-disc space-y-1">
+              <li>
+                <span className="text-white">Text Only</span> - Displays song
+                and artist as text
+              </li>
+              <li>
+                <span className="text-white">Adaptive Color</span> - Changes the
+                background color based on the album art
+              </li>
+              <li>
+                <span className="text-white">Opacity</span> - Changes the
+                background opacity of the component. Default is 60%.
+              </li>
+            </ul>
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-3">

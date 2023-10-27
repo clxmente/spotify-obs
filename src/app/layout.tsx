@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 
 import Fathom from "@/components/fathom";
 
+import { Toaster } from "@/components/ui/toaster";
+
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +26,7 @@ export default function RootLayout({
       <body className={`${inter.className} text-white`}>
         <Fathom />
         {children}
+        <Toaster />
       </body>
     </html>
   );

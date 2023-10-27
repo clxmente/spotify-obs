@@ -27,7 +27,7 @@ export default function Home() {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://github.com/phineas/lanyard"
+                  href="https://discord.gg/UrXF2cfJ7F"
                   className="text-[#5865F2] hover:underline"
                 >
                   Lanyard discord server
@@ -49,6 +49,10 @@ export default function Home() {
                 . Now, you can click on your profile in the bottom left and
                 click &quot;Copy User ID&quot;. Alternatively, you can right
                 click your name in chat and find the option there.
+              </p>
+              <p className="text-sm leading-none text-neutral-400">
+                * Note: You will need to have Spotify linked to your Discord
+                account.
               </p>
             </section>
             {/* obs-setup */}
