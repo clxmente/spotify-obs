@@ -2,6 +2,7 @@
 import type { Spotify } from "use-lanyard";
 
 import Image from "next/image";
+import SpotifyLogo from "@/components/spotify-logo";
 
 import { useEffect, useState } from "react";
 
@@ -27,13 +28,16 @@ const ExampleSong = ({ data, mouseX, mouseY }: SongProps) => {
   }, []);
 
   return (
-    <div
+    <a
+      href="https://open.spotify.com/track/5lDlLjV79Wgl2d9LjpMgXd?si=5692778999344b8d"
+      target="_blank"
+      rel="noreferrer"
       style={{
         transform: `perspective(1000px) rotateY(${mouseX}deg) rotateX(${
           -1 * mouseY
         }deg)`,
       }}
-      className="hidden w-[600px] space-x-4 rounded-[18px] border-2 border-white/10 bg-black/20 p-3 lg:flex"
+      className="relative hidden w-[600px] space-x-4 rounded-[18px] border-2 border-white/10 bg-black/20 p-3 lg:flex"
     >
       <div className="flex-shrink-0">
         <Image
@@ -59,7 +63,8 @@ const ExampleSong = ({ data, mouseX, mouseY }: SongProps) => {
           </div>
         </div>
       </div>
-    </div>
+      <SpotifyLogo className="absolute right-3 h-5 w-5 text-green-500" />
+    </a>
   );
 };
 
