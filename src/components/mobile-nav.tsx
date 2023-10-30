@@ -16,11 +16,7 @@ import {
   ChevronRightSquareIcon,
 } from "lucide-react";
 
-type MobileNavProps = {
-  setCustomOpen: (open: boolean) => void;
-};
-
-const MobileNav = ({ setCustomOpen }: MobileNavProps) => {
+const MobileNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -68,7 +64,7 @@ const MobileNav = ({ setCustomOpen }: MobileNavProps) => {
               asChild
               onClick={() => setOpen(false)}
             >
-              <Link href="#getting-started">
+              <Link href="/#getting-started">
                 <ChevronRightSquareIcon className="mr-2 h-5 w-5" />
                 Getting Started
               </Link>
@@ -80,7 +76,7 @@ const MobileNav = ({ setCustomOpen }: MobileNavProps) => {
               asChild
               onClick={() => setOpen(false)}
             >
-              <Link href="#obs-setup">
+              <Link href="/#obs-setup">
                 <VideoIcon className="mr-2 h-5 w-5" />
                 OBS Setup
               </Link>
@@ -90,12 +86,9 @@ const MobileNav = ({ setCustomOpen }: MobileNavProps) => {
               variant="glass"
               className="h-14 w-full justify-start"
               asChild
-              onClick={() => {
-                setCustomOpen(true);
-                setOpen(false);
-              }}
+              onClick={() => setOpen(false)}
             >
-              <Link href="#customize">
+              <Link href="/customize">
                 <CogIcon className="mr-2 h-5 w-5" />
                 Customize
               </Link>

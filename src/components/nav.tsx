@@ -1,20 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 
-import { useState } from "react";
-
-import Customize from "@/components/customize";
 import MobileNav from "@/components/mobile-nav";
 
 import { Button } from "@/components/ui/button";
 
-import { GithubIcon, CogIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 
 const Nav = () => {
-  const [open, setOpen] = useState(false);
-
   return (
     <>
       <nav className="sticky top-0 z-20 w-full border-b border-white/20 bg-white/5 px-4 py-3 backdrop-blur-md">
@@ -57,15 +50,6 @@ const Nav = () => {
             <Button
               size="icon"
               variant="glass"
-              className="hidden md:flex"
-              onClick={() => setOpen(true)}
-            >
-              <CogIcon />
-            </Button>
-
-            <Button
-              size="icon"
-              variant="glass"
               asChild
               className="hidden md:flex"
             >
@@ -79,10 +63,9 @@ const Nav = () => {
             </Button>
           </div>
 
-          <MobileNav setCustomOpen={setOpen} />
+          <MobileNav />
         </div>
       </nav>
-      <Customize open={open} setOpen={setOpen} />
     </>
   );
 };
