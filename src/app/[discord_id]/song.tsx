@@ -11,6 +11,8 @@ import { useSearchParams } from "next/navigation";
 import { memo, useEffect, useState } from "react";
 import { FastAverageColor } from "fast-average-color";
 
+const fac = new FastAverageColor();
+
 interface ProgressProps {
   start: number;
   end: number;
@@ -31,7 +33,7 @@ const ProgressBar = memo(({ start, end }: ProgressProps) => {
   }, [start, end]);
 
   return (
-    <div className="pr-6">
+    <div className="pr-16">
       <div className="h-3 w-full overflow-hidden rounded-full bg-white/50">
         <div
           className="h-3 rounded-full bg-white/50 transition-all duration-1000 ease-linear will-change-[width]"
@@ -43,11 +45,17 @@ const ProgressBar = memo(({ start, end }: ProgressProps) => {
 });
 ProgressBar.displayName = "ProgressBar";
 
+const brClasses = {
+  0: ["0px", "0px"],
+  25: ["12px", "8px"],
+  50: ["18px", "12px"],
+  75: ["24px", "16px"],
+  100: ["9999px", "9999px"],
+};
+
 interface SongProps {
   discord_id: Snowflake;
 }
-
-const fac = new FastAverageColor();
 
 const Song = ({ discord_id }: SongProps) => {
   const data = useThrottle(useLanyardWS(discord_id));
@@ -55,12 +63,15 @@ const Song = ({ discord_id }: SongProps) => {
   const opts = useSearchParams();
 
   const [backgroundRGB, setBackgroundRGB] = useState("0 0 0");
-  const [borderColor, setBorderColor] = useState("rgba(38 38 38 / 1");
+  const [borderColor, setBorderColor] = useState("rgba(38 38 38 / 1)");
 
   useEffect(() => {
     if (!data || !data.spotify) return;
 
-    if (data?.spotify?.album_art_url && opts.get("color") === "true") {
+    if (
+      data?.spotify?.album_art_url &&
+      (opts.get("color") === "true" || opts.get("c") === "t")
+    ) {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.src = data.spotify.album_art_url;
@@ -100,15 +111,25 @@ const Song = ({ discord_id }: SongProps) => {
     );
   }
 
-  const opacity = opts.get("opacity") || 60;
+  const opacity = opts.get("opacity") || opts.get("o") || 60;
   const backgroundColor = `rgba(${backgroundRGB} / ${opacity}%)`;
+
+  const borderRadius =
+    brClasses[(opts.get("br") || 50) as keyof typeof brClasses];
+
+  const borderWidth = opts.get("b") === "f" ? 0 : 2;
 
   const { start, end } = data.spotify.timestamps;
 
   return (
     <div
       className="flex h-[200px] w-[800px] space-x-8 rounded-[18px] border-2 border-neutral-800 p-3 transition-colors"
-      style={{ backgroundColor, borderColor }}
+      style={{
+        backgroundColor,
+        borderColor,
+        borderWidth,
+        borderRadius: borderRadius[0],
+      }}
     >
       <div className="flex-shrink-0">
         {data.spotify.album_art_url && (
@@ -118,6 +139,9 @@ const Song = ({ discord_id }: SongProps) => {
             height={172}
             width={172}
             className="aspect-square rounded-xl"
+            style={{
+              borderRadius: borderRadius[1],
+            }}
           />
         )}
       </div>

@@ -173,7 +173,10 @@ function Default({
   );
 }
 
-const BASE_URL = "https://spotify-obs.com/";
+const BASE_URL = process.env.NEXT_PUBLIC_DEVELOPMENT
+  ? "http://localhost:3000/"
+  : "https://spotify-obs.com/";
+
 function Manager() {
   const [obsUrl, setObsUrl] = useState(BASE_URL);
   const [preset, setPreset] = useState("Default");
@@ -186,7 +189,7 @@ function Manager() {
   const [borderRadius, setBorderRadius] = useState([50]);
 
   useEffect(() => {
-    setObsUrl(`https://spotify-obs.com/${discordId}?`);
+    setObsUrl(`${BASE_URL}${discordId}?`);
   }, [discordId]);
 
   useEffect(() => {

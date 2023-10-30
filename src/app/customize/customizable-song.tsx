@@ -84,11 +84,6 @@ const CustomizableSong = ({
   const [borderColor, setBorderColor] = useState("rgba(38 38 38 / 1)");
 
   useEffect(() => {
-    console.log(borderRadius);
-    console.log(brClasses[borderRadius[0] as keyof typeof brClasses]);
-  }, [borderRadius]);
-
-  useEffect(() => {
     if (example_song.album_art_url && enableColor) {
       const img = new Image();
       img.crossOrigin = "anonymous";
