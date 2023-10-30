@@ -34,13 +34,13 @@ const Nav = () => {
 
           <div className="hidden space-x-6 md:flex">
             <Link
-              href="#getting-started"
+              href="/#getting-started"
               className="font-semibold text-neutral-200 hover:text-neutral-300"
             >
               Getting Started
             </Link>
             <Link
-              href="#obs-setup"
+              href="/#obs-setup"
               className="font-semibold text-neutral-200 hover:text-neutral-300"
             >
               OBS Setup

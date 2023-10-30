@@ -70,6 +70,15 @@ function InlineInput({ label, value, setValue, readOnly }: InlineInputProps) {
   );
 }
 
+// map borderRadius to a preset label
+const labels = {
+  0: "None",
+  25: "Small",
+  50: "Medium",
+  75: "Large",
+  100: "Full",
+};
+
 type DefaultProps = {
   opacity: number[];
   setOpacity: Dispatch<SetStateAction<number[]>>;
@@ -79,14 +88,8 @@ type DefaultProps = {
   setDisableBorder: Dispatch<SetStateAction<boolean>>;
   borderRadius: number[];
   setBorderRadius: Dispatch<SetStateAction<number[]>>;
-};
-
-const labels = {
-  0: "None",
-  25: "Small",
-  50: "Medium",
-  75: "Large",
-  100: "Full",
+  trimArtist: boolean;
+  setTrimArtist: Dispatch<SetStateAction<boolean>>;
 };
 
 function Default({
@@ -98,12 +101,14 @@ function Default({
   setDisableBorder,
   borderRadius,
   setBorderRadius,
+  trimArtist,
+  setTrimArtist,
 }: DefaultProps) {
   return (
     <>
       {/* Adaptive Color Switch */}
-      <div className="flex items-center justify-between space-x-4 sm:justify-normal">
-        <div className="flex items-center space-x-2">
+      <div className="grid grid-cols-2 items-center gap-8 md:grid-cols-3">
+        <div className="flex items-center space-x-2 md:justify-center">
           <Switch
             id="enable-color"
             checked={enableColor}
@@ -118,7 +123,7 @@ function Default({
         </div>
 
         {/* Enable Border Switch */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 md:justify-center">
           <Switch
             id="enable-border"
             checked={disableBorder}
@@ -129,6 +134,21 @@ function Default({
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             Disable Border
+          </label>
+        </div>
+
+        {/* Flip Order Switch */}
+        <div className="flex items-center space-x-2 md:justify-center">
+          <Switch
+            id="trim-artist"
+            checked={trimArtist}
+            onCheckedChange={() => setTrimArtist((p) => !p)}
+          />
+          <label
+            htmlFor="trim-artist"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Trim Artist
           </label>
         </div>
       </div>
@@ -169,6 +189,97 @@ function Default({
           />
         </div>
       </div>
+
+      <section className="space-y-3">
+        <h3 className="pt-6 text-2xl font-bold">Options</h3>
+        <ul className="list-inside list-disc space-y-2 text-neutral-400">
+          <li>
+            <span className="font-bold text-white">Adaptive Color</span> -
+            Changes the background color of the song display to match the album
+            art.
+          </li>
+          <li>
+            <span className="font-bold text-white">Disable Border</span> -
+            Disable the border of the component.
+          </li>
+          <li>
+            <span className="font-bold text-white">Trim Artist</span> - Only
+            shows the primary artist for the song.
+          </li>
+          <li>
+            <span className="font-bold text-white">Opacity</span> - Changes the
+            opacity of the background color. Default is 60%.
+          </li>
+          <li>
+            <span className="font-bold text-white">Border Radius</span> -
+            Changes how rounded the corners of the component and album art are.
+            Default is Medium.
+          </li>
+        </ul>
+      </section>
+    </>
+  );
+}
+
+type TextOnlyProps = {
+  flipOrder: boolean;
+  setFlipOrder: Dispatch<SetStateAction<boolean>>;
+  trimArtist: boolean;
+  setTrimArtist: Dispatch<SetStateAction<boolean>>;
+};
+
+function TextOnly({
+  flipOrder,
+  setFlipOrder,
+  trimArtist,
+  setTrimArtist,
+}: TextOnlyProps) {
+  return (
+    <>
+      <div className="flex items-center justify-between space-x-4 sm:justify-normal">
+        {/* Flip Order Switch */}
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="flip-order"
+            checked={flipOrder}
+            onCheckedChange={() => setFlipOrder((p) => !p)}
+          />
+          <label
+            htmlFor="flip-order"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Flip Order
+          </label>
+        </div>
+        {/* Flip Order Switch */}
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="trim-artist"
+            checked={trimArtist}
+            onCheckedChange={() => setTrimArtist((p) => !p)}
+          />
+          <label
+            htmlFor="trim-artist"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Trim Artist
+          </label>
+        </div>
+      </div>
+
+      <section className="space-y-3">
+        <h3 className="pt-6 text-2xl font-bold">Options</h3>
+        <ul className="list-inside list-disc space-y-2 text-neutral-400">
+          <li>
+            <span className="font-bold text-white">Flip Order</span> - Flips the
+            order of the song and artist.
+          </li>
+          <li>
+            <span className="font-bold text-white">Trim Artist</span> - Only
+            shows the primary artist for the song.
+          </li>
+        </ul>
+      </section>
     </>
   );
 }
@@ -187,6 +298,10 @@ function Manager() {
   const [enableColor, setEnableColor] = useState(false);
   const [disableBorder, setDisableBorder] = useState(false);
   const [borderRadius, setBorderRadius] = useState([50]);
+
+  // text only
+  const [flipOrder, setFlipOrder] = useState(false);
+  const [trimArtist, setTrimArtist] = useState(false);
 
   useEffect(() => {
     setObsUrl(`${BASE_URL}${discordId}?`);
@@ -227,7 +342,7 @@ function Manager() {
   useEffect(() => {
     if (opacity[0] === 60) {
       // default value so we don't need to add it to the URL
-      setObsUrl((prev) => prev.replace(/&opacity=\d+/, ""));
+      setObsUrl((prev) => prev.replace(/&o=\d+/, ""));
     } else {
       // first time setting opacity
       if (!obsUrl.includes("&o=")) {
@@ -258,15 +373,60 @@ function Manager() {
     }
   }, [borderRadius, obsUrl]);
 
+  // text only
+  useEffect(() => {
+    // reset states to default values
+    if (preset === "Text Only") {
+      setOpacity([60]);
+      setEnableColor(false);
+      setDisableBorder(false);
+      setBorderRadius([50]);
+      if (!obsUrl.includes("&t=")) {
+        setObsUrl((prev) => `${prev}&t=text`);
+      }
+    }
+
+    if (preset === "Default") {
+      setObsUrl((prev) => prev.replace(/&t=\w+/, ""));
+      setFlipOrder(false);
+    }
+  }, [preset, obsUrl]);
+
+  useEffect(() => {
+    if (!flipOrder) {
+      setObsUrl((prev) => prev.replace(/&f=\w+/, ""));
+    } else {
+      // first time setting flip order
+      if (!obsUrl.includes("&f=")) {
+        setObsUrl((prev) => `${prev}&f=t`);
+      }
+    }
+  }, [flipOrder, obsUrl]);
+
+  useEffect(() => {
+    if (!trimArtist) {
+      setObsUrl((prev) => prev.replace(/&tr=\w+/, ""));
+    } else {
+      // first time setting trim artist
+      if (!obsUrl.includes("&tr=")) {
+        setObsUrl((prev) => `${prev}&tr=t`);
+      }
+    }
+  }, [trimArtist, obsUrl]);
+
   return (
     <>
-      <CustomizableSong
-        borderRadius={borderRadius}
-        disableBorder={disableBorder}
-        enableColor={enableColor}
-        opacity={opacity}
-        type={preset === "Text Only" ? "text" : "image"}
-      />
+      <div className="flex items-center justify-center bg-[url('/valorant.png')] bg-center px-0 py-8 md:p-8">
+        <CustomizableSong
+          borderRadius={borderRadius}
+          disableBorder={disableBorder}
+          enableColor={enableColor}
+          opacity={opacity}
+          type={preset === "Text Only" ? "text" : "image"}
+          flipOrder={flipOrder}
+          trimArtist={trimArtist}
+        />
+      </div>
 
       <InlineInput label="URL" readOnly value={obsUrl} setValue={setObsUrl} />
       <Select onValueChange={(val) => setPreset(val)} defaultValue={preset}>
@@ -284,7 +444,6 @@ function Manager() {
         value={discordId}
         setValue={setDiscordId}
       />
-
       {preset === "Default" && (
         <Default
           opacity={opacity}
@@ -295,6 +454,17 @@ function Manager() {
           setDisableBorder={setDisableBorder}
           borderRadius={borderRadius}
           setBorderRadius={setBorderRadius}
+          trimArtist={trimArtist}
+          setTrimArtist={setTrimArtist}
+        />
+      )}
+
+      {preset === "Text Only" && (
+        <TextOnly
+          flipOrder={flipOrder}
+          setFlipOrder={setFlipOrder}
+          trimArtist={trimArtist}
+          setTrimArtist={setTrimArtist}
         />
       )}
     </>

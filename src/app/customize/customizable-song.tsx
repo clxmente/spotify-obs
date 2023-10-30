@@ -38,24 +38,16 @@ export const ProgressBar = memo(() => {
 ProgressBar.displayName = "ProgressBar";
 
 const example_song = {
-  track_id: "5lDlLjV79Wgl2d9LjpMgXd",
+  track_id: "23SZWX2IaDnxmhFsSLvkG2",
   timestamps: {
-    start: 1696816775703,
-    end: 1696816976430,
+    start: 1698662011962,
+    end: 1698662369615,
   },
-  album: "letter@1.0.0",
+  album: "My Beautiful Dark Twisted Fantasy",
   album_art_url:
-    "https://i.scdn.co/image/ab67616d0000b2734f42e459b2f0cec114e6bf7c",
-  artist: "alistair",
-  song: "letter@1.0.0",
-};
-
-type Props = {
-  borderRadius: number[];
-  type: "text" | "image";
-  opacity: number[];
-  enableColor: boolean;
-  disableBorder: boolean;
+    "https://i.scdn.co/image/ab67616d0000b273d9194aa18fa4c9362b47464f",
+  artist: "Kanye West; Kid Cudi; Raekwon",
+  song: "Gorgeous",
 };
 
 // map borderRadius to tailwind classes
@@ -73,12 +65,24 @@ const brClasses = {
   100: ["9999px", "9999px"],
 };
 
+type Props = {
+  borderRadius: number[];
+  type: "text" | "image";
+  opacity: number[];
+  enableColor: boolean;
+  disableBorder: boolean;
+  flipOrder: boolean;
+  trimArtist: boolean;
+};
+
 const CustomizableSong = ({
   type,
   opacity,
   enableColor,
   borderRadius,
   disableBorder,
+  flipOrder,
+  trimArtist,
 }: Props) => {
   const [backgroundRGB, setBackgroundRGB] = useState("0 0 0");
   const [borderColor, setBorderColor] = useState("rgba(38 38 38 / 1)");
@@ -117,10 +121,22 @@ const CustomizableSong = ({
     }
   }, [enableColor]);
 
+  const artist = trimArtist
+    ? example_song.artist.split(";")[0]
+    : example_song.artist;
+
   if (type === "text") {
+    if (flipOrder) {
+      return (
+        <h1 className="text-center text-4xl font-bold">
+          {artist.replaceAll(";", ", ")} - {example_song.song}
+        </h1>
+      );
+    }
+
     return (
       <h1 className="text-center text-4xl font-bold">
-        {example_song.song} - {example_song.artist.replaceAll(";", ", ")}
+        {example_song.song} - {artist.replaceAll(";", ", ")}
       </h1>
     );
   }
@@ -130,7 +146,7 @@ const CustomizableSong = ({
   return (
     <div
       className={cn(
-        "flex max-w-[400px] select-none space-x-3 p-3 transition-colors",
+        "flex w-full max-w-[450px] select-none space-x-3 p-3 transition-colors",
         brClasses[borderRadius[0] as keyof typeof brClasses][0],
       )}
       style={{
@@ -161,9 +177,7 @@ const CustomizableSong = ({
           <p className="truncate text-2xl font-bold leading-normal text-white">
             {example_song.song}
           </p>
-          <p className="truncate text-white">
-            {example_song.artist.replaceAll(";", ", ")}
-          </p>
+          <p className="truncate text-white">{artist.replaceAll(";", ", ")}</p>
         </div>
         <ProgressBar />
       </div>

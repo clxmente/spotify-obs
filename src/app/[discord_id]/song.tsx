@@ -103,10 +103,23 @@ const Song = ({ discord_id }: SongProps) => {
     return <></>;
   }
 
-  if (opts.get("type") === "text") {
+  const artist =
+    opts.get("tr") === "t"
+      ? data.spotify.artist.split(";")[0]
+      : data.spotify.artist;
+
+  if (opts.get("type") === "text" || opts.get("t") === "text") {
+    if (opts.get("f") === "t") {
+      return (
+        <h1 className="text-center text-4xl font-bold">
+          {artist.replaceAll(";", ", ")} - {data.spotify.song}
+        </h1>
+      );
+    }
+
     return (
       <h1 className="text-center text-4xl font-bold">
-        {data.spotify.song} - {data.spotify.artist.replaceAll(";", ", ")}
+        {data.spotify.song} - {artist.replaceAll(";", ", ")}
       </h1>
     );
   }
@@ -152,7 +165,7 @@ const Song = ({ discord_id }: SongProps) => {
             {data.spotify.song}
           </p>
           <p className="truncate text-3xl text-white">
-            {data.spotify.artist.replaceAll(";", ", ")}
+            {artist.replaceAll(";", ", ")}
           </p>
         </div>
         <ProgressBar start={start} end={end} />
