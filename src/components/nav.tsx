@@ -45,6 +45,12 @@ const Nav = () => {
             >
               OBS Setup
             </Link>
+            <Link
+              href="/customize"
+              className="font-semibold text-neutral-200 hover:text-neutral-300"
+            >
+              Customize
+            </Link>
           </div>
 
           <div className="flex items-center space-x-2">
