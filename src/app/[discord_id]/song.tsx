@@ -136,7 +136,7 @@ const Song = ({ discord_id }: SongProps) => {
 
   return (
     <div
-      className="flex h-[200px] w-[800px] space-x-8 rounded-[18px] border-2 border-neutral-800 p-3 transition-colors"
+      className="flex h-[200px] w-[800px] space-x-8 rounded-[18px] border-2 border-neutral-800 p-3 transition-colors duration-700"
       style={{
         backgroundColor,
         borderColor,

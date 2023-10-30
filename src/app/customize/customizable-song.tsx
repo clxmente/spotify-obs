@@ -146,7 +146,7 @@ const CustomizableSong = ({
   return (
     <div
       className={cn(
-        "flex w-full max-w-[450px] select-none space-x-3 p-3 transition-colors",
+        "flex w-full max-w-[450px] select-none space-x-3 p-3",
         brClasses[borderRadius[0] as keyof typeof brClasses][0],
       )}
       style={{
