@@ -10,6 +10,7 @@ import { useThrottle } from "@/lib/throttle";
 import { useSearchParams } from "next/navigation";
 import { memo, useEffect, useState } from "react";
 import { FastAverageColor } from "fast-average-color";
+import { AnimatePresence, motion } from "framer-motion";
 
 const fac = new FastAverageColor();
 
@@ -100,7 +101,11 @@ const Song = ({ discord_id }: SongProps) => {
   }, [data, opts, data?.spotify?.album_art_url]);
 
   if (!data || !data.spotify) {
-    return <></>;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key="null"></motion.div>
+      </AnimatePresence>
+    );
   }
 
   const artist =
@@ -111,16 +116,32 @@ const Song = ({ discord_id }: SongProps) => {
   if (opts.get("type") === "text" || opts.get("t") === "text") {
     if (opts.get("f") === "t") {
       return (
-        <h1 className="text-center text-4xl font-bold">
-          {artist.replaceAll(";", ", ")} - {data.spotify.song}
-        </h1>
+        <AnimatePresence mode="wait">
+          <motion.h1
+            key="text1"
+            className="text-center text-4xl font-bold"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {artist.replaceAll(";", ", ")} - {data.spotify.song}
+          </motion.h1>
+        </AnimatePresence>
       );
     }
 
     return (
-      <h1 className="text-center text-4xl font-bold">
-        {data.spotify.song} - {artist.replaceAll(";", ", ")}
-      </h1>
+      <AnimatePresence mode="wait">
+        <motion.h1
+          key="text2"
+          className="text-center text-4xl font-bold"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {data.spotify.song} - {artist.replaceAll(";", ", ")}
+        </motion.h1>
+      </AnimatePresence>
     );
   }
 
@@ -135,43 +156,49 @@ const Song = ({ discord_id }: SongProps) => {
   const { start, end } = data.spotify.timestamps;
 
   return (
-    <div
-      className="flex h-[200px] w-[800px] space-x-8 rounded-[18px] border-2 border-neutral-800 p-3 transition-colors duration-700"
-      style={{
-        backgroundColor,
-        borderColor,
-        borderWidth,
-        borderRadius: borderRadius[0],
-      }}
-    >
-      <div className="flex-shrink-0">
-        {data.spotify.album_art_url && (
-          <NextImage
-            src={data.spotify.album_art_url}
-            alt={data.spotify.song}
-            height={172}
-            width={172}
-            className="aspect-square rounded-xl"
-            style={{
-              borderRadius: borderRadius[1],
-            }}
-            unoptimized={true}
-          />
-        )}
-      </div>
-
-      <div className="flex w-full flex-col justify-center space-y-4 overflow-hidden">
-        <div>
-          <p className="truncate text-5xl font-bold leading-normal text-white">
-            {data.spotify.song}
-          </p>
-          <p className="truncate text-3xl text-white">
-            {artist.replaceAll(";", ", ")}
-          </p>
+    <AnimatePresence mode="wait">
+      <motion.div
+        className="flex h-[200px] w-[800px] space-x-8 rounded-[18px] border-2 border-neutral-800 p-3 transition-colors duration-700"
+        style={{
+          backgroundColor,
+          borderColor,
+          borderWidth,
+          borderRadius: borderRadius[0],
+        }}
+        key="song"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <div className="flex-shrink-0">
+          {data.spotify.album_art_url && (
+            <NextImage
+              src={data.spotify.album_art_url}
+              alt={data.spotify.song}
+              height={172}
+              width={172}
+              className="aspect-square rounded-xl"
+              style={{
+                borderRadius: borderRadius[1],
+              }}
+              unoptimized={true}
+            />
+          )}
         </div>
-        <ProgressBar start={start} end={end} />
-      </div>
-    </div>
+
+        <div className="flex w-full flex-col justify-center space-y-4 overflow-hidden">
+          <div>
+            <p className="truncate text-5xl font-bold leading-normal text-white">
+              {data.spotify.song}
+            </p>
+            <p className="truncate text-3xl text-white">
+              {artist.replaceAll(";", ", ")}
+            </p>
+          </div>
+          <ProgressBar start={start} end={end} />
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
