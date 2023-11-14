@@ -75,7 +75,8 @@ const HeroSection = () => {
               Lanyard
             </a>{" "}
             API which monitors your Discord presence. Get started by joining the
-            Lanyard Discord server. After joining, test it out below!
+            Lanyard Discord server. After joining, start playing a song and test
+            it out below!
           </p>
           <div className="space-y-5 md:flex md:items-center md:space-x-5 md:space-y-0">
             <Button className="flex bg-[#5865F2] hover:bg-[#5865F2]/80" asChild>

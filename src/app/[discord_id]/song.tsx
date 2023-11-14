@@ -155,6 +155,7 @@ const Song = ({ discord_id }: SongProps) => {
             style={{
               borderRadius: borderRadius[1],
             }}
+            unoptimized={true}
           />
         )}
       </div>

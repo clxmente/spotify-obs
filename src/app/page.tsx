@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-import example from "/public/example.png";
+import Link from "next/link";
 
 import Nav from "@/components/nav";
 import HeroSection from "@/app/hero-section";
@@ -37,6 +35,7 @@ export default function Home() {
                 presence and monitors your activity. This is how your Spotify
                 status is able to be displayed in OBS in real-time.
               </p>
+
               <p className="text-neutral-400">
                 Next, you&apos;ll need to{" "}
                 <span className="font-semibold text-white">
@@ -53,6 +52,18 @@ export default function Home() {
               <p className="text-sm leading-none text-neutral-400">
                 * Note: You will need to have Spotify linked to your Discord
                 account.
+              </p>
+              <p className="text-neutral-400">
+                Finally, add a new browser source to your OBS scene. You can
+                customize the look of the component and preview it on the{" "}
+                <Link
+                  href="/customize"
+                  className="text-[#5865F2] hover:underline"
+                >
+                  customization page
+                </Link>
+                . Further instructions on how to add the browser source can be
+                found below in the OBS Setup section.
               </p>
             </section>
             {/* obs-setup */}
@@ -111,10 +122,16 @@ export default function Home() {
               </div>
               <p className="text-neutral-400">
                 That&apos;s it! You should now see your Spotify status in OBS.
-                Move it around or resize it to your liking. Here is an example
-                of what it should look like:
+                Move it around or resize it to your liking. You can view an
+                example on the{" "}
+                <Link
+                  className="text-[#5865F2] hover:underline"
+                  href="/customize"
+                >
+                  customization page
+                </Link>
+                .
               </p>
-              <Image src={example} alt="Example" className="rounded-xl" />
             </section>
           </div>
         </section>
