@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { trackGoal } from "fathom-client";
 import { useRouter } from "next/navigation";
 
 import { default as ExampleSong } from "@/app/example-song";
@@ -33,8 +32,8 @@ const HeroSection = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    trackGoal("7EILHFG4", 0);
-
+    // @ts-ignore
+    window.umami.track("Hero Test");
     return router.push(`/${discordID}`);
   };
 

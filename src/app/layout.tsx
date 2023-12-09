@@ -2,7 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 
-import Fathom from "@/components/fathom";
+import Script from "next/script";
 
 import { Toaster } from "@/components/ui/toaster";
 
@@ -23,8 +23,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          defer
+          src="https://umami.lebron.cloud/script.js"
+          data-website-id="2e871321-82d7-40b9-bf4b-b3108ed511cd"
+          data-auto-track="false"
+        ></script>
+      </head>
       <body className={`${inter.className}`}>
-        <Fathom />
         {children}
         <Toaster />
       </body>
