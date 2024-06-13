@@ -28,7 +28,7 @@ export default function RootLayout({
           async
           defer
           src="https://umami.lebron.cloud/script.js"
-          data-website-id="2e871321-82d7-40b9-bf4b-b3108ed511cd"
+          data-website-id="1c626112-6310-45f2-a5c1-65473c971147"
           data-auto-track="false"
         ></script>
       </head>
