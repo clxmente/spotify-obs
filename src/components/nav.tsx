@@ -39,6 +39,12 @@ const Nav = () => {
               OBS Setup
             </Link>
             <Link
+              href="/#troubleshooting"
+              className="font-semibold text-neutral-200 hover:text-neutral-300"
+            >
+              Troubleshooting
+            </Link>
+            <Link
               href="/customize"
               className="font-semibold text-neutral-200 hover:text-neutral-300"
             >

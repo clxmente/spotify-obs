@@ -137,6 +137,44 @@ export default function Home() {
                   .
                 </p>
               </section>
+              {/* troubleshooting */}
+              <section className="space-y-4">
+                <h2
+                  className="scroll-mt-[81px] text-3xl font-bold"
+                  id="troubleshooting"
+                >
+                  Troubleshooting
+                </h2>
+                <p className="text-neutral-400">
+                  Here are some common troubleshooting steps in case your
+                  spotify status isn&apos;t displaying:
+                </p>
+                <ol className="list-inside list-decimal space-y-4">
+                  <li className="text-lg font-semibold">
+                    Check Your Discord Activity Privacy Settings{" "}
+                    <p className="text-base font-normal text-neutral-400">
+                      Depending on your settings, you may have to specifically
+                      share your activity with the Lanyard Discord server. To do
+                      this,{" "}
+                      <span className="font-semibold text-white">
+                        right click the Lanyard server &rarr; Privacy Settings
+                        &rarr; Enable Activity Status
+                      </span>
+                      .
+                    </p>
+                  </li>
+                  <li className="text-lg font-semibold">
+                    Do not appear offline on Discord
+                    <p className="text-base font-normal text-neutral-400">
+                      While you are appear offline, Discord doesn&apos;t
+                      broadcast your activity, so there&apos;s no way to track /
+                      monitor your Spotify status. You can still set your status
+                      as Idle or Do Not Disturb — anything but Invisible as long
+                      as you want to display your current Spotify track.
+                    </p>
+                  </li>
+                </ol>
+              </section>
             </div>
           </section>
         </main>

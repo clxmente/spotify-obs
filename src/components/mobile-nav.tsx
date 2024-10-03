@@ -12,6 +12,7 @@ import {
   CogIcon,
   MenuIcon,
   VideoIcon,
+  WrenchIcon,
   LayoutGridIcon,
   ChevronRightSquareIcon,
 } from "lucide-react";
@@ -79,6 +80,18 @@ const MobileNav = () => {
               <Link href="/#obs-setup">
                 <VideoIcon className="mr-2 h-5 w-5" />
                 OBS Setup
+              </Link>
+            </Button>
+
+            <Button
+              variant="glass"
+              className="h-14 w-full justify-start"
+              asChild
+              onClick={() => setOpen(false)}
+            >
+              <Link href="/#obs-setup">
+                <WrenchIcon className="mr-2 h-5 w-5" />
+                Troubleshooting
               </Link>
             </Button>
 
