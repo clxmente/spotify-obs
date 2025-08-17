@@ -32,8 +32,12 @@ const HeroSection = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // @ts-ignore
-    window.umami.track("Hero Test");
+    try {
+      // @ts-ignore
+      window.umami.track("Hero Test");
+    } catch (err) {
+      console.error("couldn't track umami thing");
+    }
     return router.push(`/${discordID}`);
   };
 
